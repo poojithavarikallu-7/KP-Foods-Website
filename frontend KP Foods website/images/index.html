@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <video id="background-video" autoplay muted loop>
+  <source src="C:/HTML FILES/frontend KP Foods website/images/food images/home.mp4" type="video/mp4" >
+</video>
+    <div class="navbar">
+        <div class="logo">KP FOODS</div>
+        <ul>
+            <li>Home</li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+        </ul> </div>
+    </div>
+        <div class="hero">
+            <div class="left">
+                <span class="left1">Are You Hungry?</span>
+                <span class="left2">Don't Wait</span>
+                <span class="left3">Let start to order food now</span>
+                <span class="left4">Check menu</span>
+            </div>
+            <div class="food" id="food"></div>
+        </div>
+        <div class="items">
+            <div id="food1"></div>
+            <div id="food2"></div>
+            <div id="food3"></div>
+            <div id="food4"></div>
+        </div>
+    </div>
+    <script>
+        let food=document.getElementById("food");
+        let food1=document.getElementById("food1");
+        let food2=document.getElementById("food2");
+        let food3=document.getElementById("food3");
+        let food4=document.getElementById("food4");
+        food.addEventListener('click',()=>{
+            food.style.backgroundImage="url('C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse6.jpg')";
+        });
+        food1.addEventListener('click',()=>{
+            food.style.backgroundImage="url('C:/HTML FILES/frontend KP Foods website/images/Starters images/starter8.jpg')";
+        });
+        food2.addEventListener('click',()=>{
+            food.style.backgroundImage="url('C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert6.jpg')";
+        });
+        food3.addEventListener('click',()=>{
+            food.style.backgroundImage="url('C:/HTML FILES/frontend KP Foods website/images/food images/food.png')";
+        });
+        food4.addEventListener('click',()=>{
+            food.style.backgroundImage="url('C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert1.jpg')";
+        });
+    </script>
+</body>
+</html>

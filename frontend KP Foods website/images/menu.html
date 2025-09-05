@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu - KP FOODS</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    
+    /* Minimal inline styling for demo */
+    .menu-card {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      width: 200px;
+      display: inline-block;
+      vertical-align: top;
+      border-radius: 8px;
+      box-shadow: 0 0 6px #ccc;
+    }
+    .menu-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .info {
+      text-align: center;
+      margin-top: 8px;
+    }
+    button.add-to-cart {
+      padding: 8px 16px;
+      background-color: #228B22;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button.add-to-cart:disabled {
+      background-color: grey;
+      cursor: not-allowed;
+    }
+    .notification {
+      color: green;
+      font-size: 14px;
+      margin-top: 5px;
+      height: 18px;
+    }
+    
+    .cart-count {
+      background-color: white;
+      border-radius: 50%;
+      padding: 2px 8px;
+      font-size: 14px;
+      vertical-align: super;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <video id="background-video" autoplay muted loop>
+  <source src="C:/HTML FILES/frontend KP Foods website/images/food images/menu.mp4" >
+</video>
+  <div class="navbar">
+    <div class="logo">KP FOODS</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><strong>Menu</strong></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+      <li>Cart <span id="cart-count" class="cart-count">0</span></li>
+    </ul>
+  </div>
+
+  <center>
+    <p style="color: orange; font-size: x-large; margin: 20px 0;">
+      "Explore our variety of mouth-watering dishes made fresh every day."
+    </p>
+ 
+
+  <div class="menu-container">
+    <div class="category">
+      <h2>Starters</h2>
+      <div class="menu-items" id="starters"></div>
+    </div>
+    <div class="category">
+      <h2>Main Course</h2>
+      <div class="menu-items" id="main-course"></div>
+    </div>
+    <div class="category">
+      <h2>Desserts</h2>
+      <div class="menu-items" id="desserts"></div>
+    </div>
+    <div class="category">
+      <h2>Pizzas</h2>
+      <div class="menu-items" id="pizzas"></div>
+    </div>
+  </div>
+ </center>
+  <center style="margin: 30px;">
+    <a href="payment.html">
+      <button
+        style="
+          padding: 12px 24px;
+          font-size: 18px;
+          background-color: #228B22;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+        "
+      >
+        Go to Payment
+      </button>
+    </a>
+  </center>
+
+  <script>
+    // Data arrays with relative image paths, you need to adjust these paths to your folder structure
+    const starters = [
+      { name: "Veg Spring Rolls", price: 100, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter1.jpg" },
+      { name: "Chicken Spring Rolls", price: 140, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter2.jpg" },
+      { name: "Paneer Tikka", price: 160, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter3.jpg" },
+      { name: "Chicken Tikka", price: 180, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter4.jpg" },
+      { name: "Fish Tikka", price: 220, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter5.jpg" },
+      { name: "Veg Samosas", price: 80, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter6.jpg" },
+      { name: "Chicken Samosas", price: 120, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter7.jpg" },
+      { name: "Veg Seekh Kebab", price: 160, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter10.jpg" },
+      { name: "Chicken Seekh Kebab", price: 200, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter9.jpg" },
+      { name: "Mutton Seekh Kebab", price: 240, image: "C:/HTML FILES/frontend KP Foods website/images/Starters images/starter8.jpg" },
+    ];
+
+    const mainCourse = [
+      { name: "Veg Biryani", price: 140, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse1.jpg" },
+      { name: "Chicken Biryani", price: 200, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse2.jpg" },
+      { name: "Mutton Biryani", price: 280, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse3.jpg" },
+      { name: "Hyderabadi Dum Biryani (Veg)", price: 160, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse4.jpg" },
+      { name: "Hyderabadi Dum Biryani (Chicken)", price: 220, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse5.jpg" },
+      { name: "Hyderabadi Dum Biryani (Mutton)", price: 300, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse6.jpg" },
+      { name: "Lucknowi Biryani (Veg)", price: 180, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse7.jpg" },
+      { name: "Lucknowi Biryani (Chicken)", price: 240, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse8.jpg" },
+      { name: "Lucknowi Biryani (Mutton)", price: 320, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse9.jpg" },
+      { name: "Sindh Biryani (Veg)", price: 200, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse10.jpg" },
+      { name: "Sindh Biryani (Chicken)", price: 260, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse11.jpg" },
+      { name: "Sindh Biryani (Mutton)", price: 340, image: "C:/HTML FILES/frontend KP Foods website/images/Main Course images/maincourse12.jpg" },
+    ];
+
+    const desserts = [
+      { name: "Gulab Jamun", price: 100, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert1.jpg" },
+      { name: "Jalebi", price: 80, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert2.jpg" },
+      { name: "Ras Malai", price: 140, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert3.jpg" },
+      { name: "Kulfi", price: 120, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert4.jpg" },
+      { name: "Falooda", price: 160, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert5.jpg" },
+      { name: "Brownies", price: 140, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert6.jpg" },
+      { name: "Cheesecake", price: 200, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert7.jpg" },
+      { name: "Tiramisu", price: 240, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert8.jpg" },
+      { name: "Fruit Salad", price: 120, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert9.jpg" },
+      { name: "Chocolate Mousse", price: 160, image: "C:/HTML FILES/frontend KP Foods website/images/Desserts images/dessert10.jpg" },
+    ];
+
+    const pizzas = [
+      { name: "Margherita", price: 199, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza1.jpg" },
+      { name: "Pepperoni", price: 299, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza2.jpg" },
+      { name: "Hawaiian", price: 279, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza3.jpg" },
+      { name: "BBQ Chicken", price: 329, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza4.jpg" },
+      { name: "Buffalo Chicken", price: 319, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza5.jpg" },
+      { name: "Veggie", price: 249, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza6.jpg" },
+      { name: "Deluxe Veggie", price: 299, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza7.jpg" },
+      { name: "Farmhouse", price: 279, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza8.jpg" },
+      { name: "Mexican Green Wave", price: 259, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza9.jpg" },
+      { name: "Paneer Makhani", price: 299, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza10.jpg" },
+      { name: "Double Cheese Margherita", price: 279, image: "C:/HTML FILES/frontend KP Foods website/images/Pizzas images/pizza11.jpg" },
+    ];
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const cartCountElem = document.getElementById("cart-count");
+    function updateCartCount() {
+      const totalQty = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCountElem.textContent = totalQty;
+    }
+
+    function renderItems(category, data) {
+      const container = document.getElementById(category);
+      data.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.classList.add("menu-card");
+
+        // Create notification div for added-to-cart message
+        const notification = document.createElement("div");
+        notification.classList.add("notification");
+        notification.id = `notif-${category}-${index}`;
+
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div class="info">
+            <h3>${item.name}</h3>
+            <p>₹${item.price}</p>
+            <button class="add-to-cart" type="button">Add to Cart</button>
+          </div>
+        `;
+
+        // Append notification after button
+        card.querySelector(".info").appendChild(notification);
+
+        container.appendChild(card);
+
+        // Add event listener for button
+        const btn = card.querySelector("button.add-to-cart");
+        btn.addEventListener("click", () => {
+          addToCart(item);
+          notification.textContent = `${item.name} added to cart (Qty: ${
+            getCartQuantity(item.name)
+          })`;
+          // Clear message after 2 seconds
+          setTimeout(() => {
+            notification.textContent = "";
+          }, 2000);
+        });
+      });
+    }
+
+    function getCartQuantity(name) {
+      const found = cart.find((i) => i.name === name);
+      return found ? found.quantity : 0;
+    }
+
+    function addToCart(item) {
+      const existing = cart.find((i) => i.name === item.name);
+      if (existing) {
+        existing.quantity++;
+      } else {
+        cart.push({ ...item, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    // Initial render & update cart count
+    renderItems("starters", starters);
+    renderItems("main-course", mainCourse);
+    renderItems("desserts", desserts);
+    renderItems("pizzas", pizzas);
+    updateCartCount();
+  </script>
+</body>
+</html>

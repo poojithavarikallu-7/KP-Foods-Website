@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment - KP FOODS</title>
+  <style>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      padding: 30px 15px;
+      max-width: 750px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    h1, h2 {
+      color: black;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    thead {
+      background-color: orange;
+      color: white;
+    }
+
+    th, td {
+      padding: 15px 12px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f2f7f1;
+    }
+
+    .total {
+      font-weight: 700;
+      font-size: 1.4rem;
+      text-align: right;
+      margin-bottom: 40px;
+      color: forestgreen;
+    }
+
+    form {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 15px;
+      color: #34495e;
+    }
+
+    input {
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1.8px solid #ccc;
+      transition: border-color 0.3s ease;
+      outline-offset: 2px;
+      outline-color: transparent;
+    }
+
+    input:focus {
+      border-color: orange;
+      outline-color: orange;
+      outline-style: solid;
+    }
+
+    button {
+      background-color: #27ae60;
+      border: none;
+      padding: 14px 20px;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+      box-shadow: 0 4px 10px rgba(39, 174, 96, 0.5);
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #1e8449;
+      box-shadow: 0 6px 14px rgba(30, 132, 73, 0.7);
+    }
+
+    .success-message {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      background-color: #d4edda;
+      color: #155724;
+      border: 2px solid #c3e6cb;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .qty-btn {
+      cursor: pointer;
+      font-weight: 700;
+      padding: 6px 14px;
+      margin: 0 8px;
+      background-color: #27ae60;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 18px;
+      line-height: 1;
+      transition: background-color 0.25s ease;
+      user-select: none;
+    }
+
+    .qty-btn:hover {
+      background-color: #1e8449;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 15px 10px;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead tr {
+        display: none;
+      }
+
+      tbody tr {
+        margin-bottom: 20px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        padding: 15px;
+      }
+
+      tbody td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        font-size: 14px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+      }
+
+      tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        padding-left: 15px;
+        font-weight: 600;
+        text-align: left;
+        color: #555;
+        white-space: nowrap;
+      }
+
+      .total {
+        text-align: center;
+        font-size: 1.2rem;
+      }
+    }
+    body{
+      background-image: url("C:/HTML FILES/frontend KP Foods website/images/food images/payment.jpg");
+      background-size: 90%;
+
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Your Order Summary</h1>
+  <table id="cart-table" aria-label="Cart items">
+    <thead>
+      <tr>
+        <th scope="col">Dish</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit Price (₹)</th>
+        <th scope="col">Total Price (₹)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Items inserted here by JS -->
+    </tbody>
+  </table>
+  <div class="total">Grand Total: ₹<span id="grand-total">0</span></div>
+
+  <h2>Payment Details</h2>
+  <form id="payment-form" aria-label="Payment form">
+    <label for="name">Name on Card</label>
+    <input type="text" id="name" name="name" required placeholder="John Doe" autocomplete="cc-name" />
+
+    <label for="card-number">Card Number</label>
+    <input type="text" id="card-number" name="card-number" required placeholder="1234 5678 9012 3456" pattern="\d{16}" maxlength="16" autocomplete="cc-number" />
+
+    <label for="expiry">Expiry Date (MM/YY)</label>
+    <input type="text" id="expiry" name="expiry" required placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/?([0-9]{2})" maxlength="5" autocomplete="cc-exp" />
+
+    <label for="cvv">CVV</label>
+    <input type="password" id="cvv" name="cvv" required placeholder="123" pattern="\d{3}" maxlength="3" autocomplete="cc-csc" />
+
+    <button type="submit">Pay Now</button>
+  </form>
+
+  <div class="success-message" id="success-message" style="display:none;" role="alert">
+    Payment successful! Thank you for your order.
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const tbody = document.querySelector('#cart-table tbody');
+    const grandTotalElem = document.getElementById('grand-total');
+    const paymentForm = document.getElementById('payment-form');
+    const successMessage = document.getElementById('success-message');
+
+    function renderCart() {
+      tbody.innerHTML = '';
+      if (cart.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; font-style: italic;">Your cart is empty.</td></tr>';
+        paymentForm.style.display = 'none';
+        grandTotalElem.textContent = '0';
+        return;
+      }
+      paymentForm.style.display = 'flex';
+
+      let grandTotal = 0;
+      cart.forEach((item, index) => {
+        const totalPrice = item.price * item.quantity;
+        grandTotal += totalPrice;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td data-label="Dish">${item.name}</td>
+          <td data-label="Quantity">
+            <button class="qty-btn" onclick="changeQuantity(${index}, -1)" aria-label="Decrease quantity of ${item.name}">−</button>
+            ${item.quantity}
+            <button class="qty-btn" onclick="changeQuantity(${index}, 1)" aria-label="Increase quantity of ${item.name}">+</button>
+          </td>
+          <td data-label="Unit Price">₹${item.price}</td>
+          <td data-label="Total Price">₹${totalPrice}</td>
+        `;
+        tbody.appendChild(row);
+      });
+      grandTotalElem.textContent = grandTotal;
+    }
+
+    function changeQuantity(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1); // Remove item if quantity 0
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    renderCart();
+
+    paymentForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if(cart.length === 0){
+        alert('Your cart is empty. Add items before paying.');
+        return;
+      }
+
+      // Basic validation
+      const name = document.getElementById('name').value.trim();
+      const cardNumber = document.getElementById('card-number').value.trim();
+      const expiry = document.getElementById('expiry').value.trim();
+      const cvv = document.getElementById('cvv').value.trim();
+
+      if(!name || cardNumber.length !== 16 || !expiry.match(/(0[1-9]|1[0-2])\/?([0-9]{2})/) || cvv.length !== 3) {
+        alert('Please fill all payment details correctly.');
+        return;
+      }
+
+      alert('Processing payment...');
+      setTimeout(() => {
+        alert('🎊Your Payment was successful🎊');
+
+        // Clear cart and update UI
+        localStorage.removeItem('cart');
+        cart = [];
+        renderCart();
+
+        paymentForm.style.display = 'none';
+        successMessage.style.display = 'block';
+
+        // Optional redirect
+        setTimeout(() => { window.location.href = "index.html"; }, 4000);
+      }, 1500);
+    });
+  </script>
+
+</body>
+</html>
+
+

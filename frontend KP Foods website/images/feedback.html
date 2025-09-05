@@ -1,0 +1,84 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback - KP Foods</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">KP FOODS</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+        </ul> </div>
+    </div>
+        <div class="hero">
+            <div class="left">
+                <h1 style="color: orange;">We value your Feedback</h1>
+                <form>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" name="name"><br><br>
+                    <label for="message">Your Feedback:</label><br>
+                    <textarea id="message" name="message" rows="5" cols="30"></textarea><br><br>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feedback - KP Foods</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<style>
+  body{
+      background-image: url("C:/HTML FILES/frontend KP Foods website/images/food images/feedback.jpg");
+      background-size: cover;
+      background-size:  100%;
+    }
+</style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">KP FOODS</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li>Feedback</li>
+    </ul>
+  </div>
+
+  <div class="hero">
+    <div class="left">
+      <h1 style="color: orange;">We value your Feedback</h1>
+      <form id="feedback-form">
+        <div class="feedback-form" >
+        <input type="text" id="name" name="name" required placeholder="Name"><br><br>
+        <textarea id="message" name="message" rows="5" cols="30" required placeholder="Message..."></textarea><br><br>
+
+        <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+       document.getElementById("feedback-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    alert("Thank you for your feedback!");
+    this.reset();
+  });
+  </script>
+</body>
+</html>

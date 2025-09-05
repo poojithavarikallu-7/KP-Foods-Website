@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact - KP Foods</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+   <style>
+    body{
+      background-image: url("C:/HTML FILES/frontend KP Foods website/images/food images/contact.jpg");
+      background-size: cover;
+    }
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(70vh - 30px);
+    }
+
+    form {
+      margin: 0 auto;
+      padding: 10px;
+      border-radius: 12px;
+      width: 40%;
+      max-width: 600px;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">KP FOODS</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="about.html">About</a></li>
+      <li>Contact</li>
+      <li><a href="feedback.html">Feedback</a></li>
+    </ul>
+  </div>
+  <div class="hero">
+    <form id="contact-form">
+
+        <h1 style="color: orange;">Contact Us</h1>
+
+        <div class="contact-form">
+          <input type="text" name="name" placeholder="Name" required />
+        </div><br>
+
+        <div class="contact-form">
+          <input type="email" name="email" placeholder="Email" required />
+        </div><br>
+
+        <div class="contact-form">
+          <input type="tel" name="phone" placeholder="Phone Number" required />
+        </div><br>
+
+        <div class="contact-form">
+          <input type="text" name="address" placeholder="Address" required />
+        </div><br>
+
+        <div class="contact-form">
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script>
+    (function () {
+      emailjs.init("YOUR_PUBLIC_KEY"); // ⬅️ Replace with your EmailJS public key
+    })();
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    alert("Thank you for contacting us! We'll get back to you soon.");
+    this.reset();
+  });
+  </script>
+</body>
+</html>
+
+
