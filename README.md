@@ -34,6 +34,3 @@ Plans to further improve the KP Foods website include adding an online ordering 
 
 A big thanks to all who inspired and supported this project, especially those passionate about sharing traditional Indian food culture through modern web design.
 
-***
-
-This README provides a warm, clear overview of your project, suitable for GitHub and understandable to others who visit your repo. Let me know if you want it tailored further!
