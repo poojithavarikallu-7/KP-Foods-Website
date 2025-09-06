@@ -1,4 +1,4 @@
-# KP-Foods-Website-eCommerce-Project
+# KP-Foods-Website
 
 Welcome to the KP Foods website repository! This project is a responsive and visually engaging website designed for KP Foods, an authentic Indian cuisine restaurant specializing in rich, traditional dishes with bold flavors.
 
